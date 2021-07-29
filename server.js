@@ -122,6 +122,7 @@ app.use(async (ctx, next) => {
           tickets[editedIndex].name = edName;
           tickets[editedIndex].description = edDescription;
           ctx.response.body = true;
+          ctx.response.status = 204;
         return;
           default:
           ctx.response.status = 404;
