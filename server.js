@@ -118,11 +118,10 @@ app.use(async (ctx, next) => {
           return;
         case 'editTicket':
           const { edId, edName, edDescription } = ctx.request.body;
-          const editedIndex = tickets.findIndex((item) => item.id === edId);
+          const editedIndex = tickets.findIndex((item) => item.id === Number(edId));
           tickets[editedIndex].name = edName;
           tickets[editedIndex].description = edDescription;
           ctx.response.body = true;
-          ctx.response.status = 204;
         return;
           default:
           ctx.response.status = 404;
