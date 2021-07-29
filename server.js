@@ -114,14 +114,14 @@ app.use(async (ctx, next) => {
           const { delId } = ctx.request.query;
           const index = tickets.findIndex((item) => item.id === delId);
           tickets.splice(index, 1);
-          //ctx.response.body = 'ok';
+          ctx.response.status = 204;
           return;
         case 'editTicket':
           const { edId, edName, edDescription } = ctx.request.body;
           const editedIndex = tickets.findIndex((item) => item.id === edId);
           tickets[editedIndex].name = edName;
           tickets[editedIndex].description = edDescription;
-          //ctx.response.body = 'ok';
+          ctx.response.status = 204;
         return;
           default:
           ctx.response.status = 404;
