@@ -118,9 +118,9 @@ app.use(async (ctx, next) => {
           return;
         case 'editTicket':
           const {edName, edDescription } = ctx.request.body;
-          const {edId} = ctx.request.query;
+          // const {edId} = ctx.request.query;
           console.log(edId);
-          const editedIndex = tickets.findIndex((item) => item.id === edId);
+          const editedIndex = tickets.findIndex((item) => item.id === id);
           console.log(editedIndex);
           tickets[editedIndex].name = edName;
           tickets[editedIndex].description = edDescription;
