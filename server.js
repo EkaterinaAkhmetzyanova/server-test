@@ -115,6 +115,7 @@ app.use(async (ctx, next) => {
           const index = tickets.findIndex((item) => item.id === delId);
           tickets.splice(index, 1);
           ctx.response.status = 204;
+          ctx.response.body = true;
           return;
         case 'editTicket':
           const { edId, edName, edDescription } = ctx.request.body;
