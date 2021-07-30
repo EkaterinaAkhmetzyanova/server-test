@@ -121,7 +121,7 @@ app.use(async (ctx, next) => {
           const {edId} = ctx.request.query;
           console.log(ctx.request.query.id);
           const editedIndex = tickets.findIndex((item) => {
-            item.id === edId;
+            item.id === ctx.request.query.id;
           });
           
           console.log(editedIndex);
