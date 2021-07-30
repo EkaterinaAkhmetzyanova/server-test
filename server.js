@@ -118,11 +118,11 @@ app.use(async (ctx, next) => {
           return;
         case 'editTicket':
           const { edName, edDescription } = ctx.request.body;
-          const {edId} = ctx.request.query;
-          console.log(edId);
+          //const {edId} = ctx.request.query;
+          //console.log(edId);
           const editedIndex = tickets.findIndex((item) => {
             console.log(item.id);
-            item.id === edId;
+            item.id === id;
           });
           
           console.log(editedIndex);
