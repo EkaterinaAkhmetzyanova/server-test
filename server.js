@@ -117,32 +117,32 @@ app.use(async (ctx, next) => {
           ctx.response.body = true;
           return;
         case 'editTicket':
-      //     const {edid} = ctx.request.query;
-      //     const updateIdx = tickets.findIndex(ticket => ticket.id === edid);
-      //     console.log(edid, updateIdx);
-      // const {updateData} = ctx.request.body;
-      // const tick = {
-      //   ...tickets[updateIdx],
-      //   ...updateData
-      // }
-      // tickets.splice(updateIdx, 1);
-      // tickets.splice(updateIdx, 0, tick);
-      // ctx.response.body = tickets;
-      // return;
-          const { edName, edDescription } = ctx.request.body;
-          console.log(edName, edDescription);
-          console.log(tickets);
-          const {edId} = ctx.request.body;
-          console.log(edId);
-          const editedIndex = tickets.find((item) => {
-            console.log(item.id);
-            item.id === edId;
-          });
+          const {edId} = ctx.request.query;
+          const edIndex = tickets.findIndex(item => item.id === edId);
+          console.log(edId, edIndex);
+      const { data } = ctx.request.body;
+      const ticket = {
+        ...tickets[edIndex],
+        ...data
+      }
+      tickets.splice(edIndex, 1);
+      tickets.splice(edIndex, 0, ticket);
+      ctx.response.body = tickets;
+      return;
+          // const { edName, edDescription } = ctx.request.body;
+          // console.log(edName, edDescription);
+          // console.log(tickets);
+          // const {edId} = ctx.request.body;
+          // console.log(edId);
+          // const editedIndex = tickets.find((item) => {
+          //   console.log(item.id);
+          //   item.id === edId;
+          // });
           
-          console.log(editedIndex);
-          editedIndex.name = edName;
-          editedIndex.description = edDescription;
-          ctx.response.body = true;
+          // console.log(editedIndex);
+          // editedIndex.name = edName;
+          // editedIndex.description = edDescription;
+          // ctx.response.body = true;
         return;
           default:
           ctx.response.status = 404;
