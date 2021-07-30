@@ -117,17 +117,25 @@ app.use(async (ctx, next) => {
           ctx.response.body = true;
           return;
         case 'editTicket':
-          const { edName, edDescription } = ctx.request.body;
-          const {edId} = ctx.request.query;
-          console.log(ctx.request.query.id);
-          console.log(tickets);
-          const editedIndex = tickets.find((item) => {
-            item.id === ctx.request.query.id;
-          });
+          if (ctx.request.query.id) {
+            const { edName, edDescription } = ctx.request.body;
+            const edId = Number(ctx.request.query.id);
+            for (const item of tickets) {
+              if (edId === item.id) {
+                item.name = edName;
+                item.description = edDescription;
+              }
+            }
+          }
+          // console.log(ctx.request.query.id);
+          // console.log(tickets);
+          // const editedIndex = tickets.find((item) => {
+          //   item.id === ctx.request.query.id;
+          // });
           
-          console.log(editedIndex);
-          editedIndex.name = edName;
-          editedIndex.description = edDescription;
+          // console.log(editedIndex);
+          // editedIndex.name = edName;
+          // editedIndex.description = edDescription;
           ctx.response.body = tickets;
         return;
           default:
