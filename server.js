@@ -134,14 +134,14 @@ app.use(async (ctx, next) => {
           console.log(tickets);
           const {edId} = ctx.request.body;
           console.log(edId);
-          const editedIndex = tickets.findIndex((item) => {
+          const editedIndex = tickets.find((item) => {
             console.log(item.id);
             item.id === edId;
           });
           
           console.log(editedIndex);
-          tickets[editedIndex].name = edName;
-          tickets[editedIndex].description = edDescription;
+          editedIndex.name = edName;
+          editedIndex.description = edDescription;
           ctx.response.body = true;
         return;
           default:
