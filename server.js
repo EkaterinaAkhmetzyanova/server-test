@@ -120,6 +120,7 @@ app.use(async (ctx, next) => {
           if (ctx.request.query.id) {
             const { edName, edDescription } = ctx.request.body;
             const edId = Number(ctx.request.query.id);
+            console.log(edId);
             for (const item of tickets) {
               if (edId === item.id) {
                 item.name = edName;
