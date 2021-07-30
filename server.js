@@ -126,7 +126,6 @@ app.use(async (ctx, next) => {
           console.log(editedIndex);
           editedIndex.name = edName;
           editedIndex.description = edDescription;
-          tickets.set(edId, edDescription);
           ctx.response.body = tickets;
         return;
           default:
