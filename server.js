@@ -120,7 +120,7 @@ app.use(async (ctx, next) => {
           const { edName, edDescription } = ctx.request.body;
           const {edId} = ctx.request.query;
           console.log(ctx.request.query.id);
-          const editedIndex = tickets.findIndex((item) => {
+          const editedIndex = tickets.find((item) => {
             item.id === ctx.request.query.id;
           });
           
