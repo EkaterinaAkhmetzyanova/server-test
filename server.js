@@ -130,7 +130,9 @@ app.use(async (ctx, next) => {
       // ctx.response.body = tickets;
       // return;
           const { edName, edDescription } = ctx.request.body;
-          const {edId} = ctx.request.query;
+          console.log(edName, edDescription);
+          console.log(tickets);
+          const {edId} = ctx.request.body;
           console.log(edId);
           const editedIndex = tickets.findIndex((item) => {
             console.log(item.id);
