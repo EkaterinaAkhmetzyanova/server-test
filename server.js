@@ -120,13 +120,13 @@ app.use(async (ctx, next) => {
           const { edName, edDescription } = ctx.request.body;
           const {edId} = ctx.request.query;
           const editedIndex = tickets.findIndex((item) => {
-            item.id === Number(edId);
+            item.id === edId;
           });
           
           console.log(editedIndex);
           editedIndex.name = edName;
           editedIndex.description = edDescription;
-          tickets.set(Number(edId), edDescription);
+          tickets.set(edId, edDescription);
           ctx.response.body = tickets;
         return;
           default:
