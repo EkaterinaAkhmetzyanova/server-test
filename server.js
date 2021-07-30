@@ -119,7 +119,8 @@ app.use(async (ctx, next) => {
         case 'editTicket':
           const {edid} = ctx.request.query;
           const updateIdx = tickets.findIndex(ticket => ticket.id === edid);
-      const updateData = JSON.parse(ctx.request.body)
+          console.log(edid, updateIdx);
+      const {updateData} = ctx.request.body;
       const tick = {
         ...tickets[updateIdx],
         ...updateData
