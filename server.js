@@ -117,30 +117,30 @@ app.use(async (ctx, next) => {
           ctx.response.body = true;
           return;
         case 'editTicket':
-          const {edid} = ctx.request.query;
-          const updateIdx = tickets.findIndex(ticket => ticket.id === edid);
-          console.log(edid, updateIdx);
-      const {updateData} = ctx.request.body;
-      const tick = {
-        ...tickets[updateIdx],
-        ...updateData
-      }
-      tickets.splice(updateIdx, 1);
-      tickets.splice(updateIdx, 0, tick);
-      ctx.response.body = tickets;
-      return;
-          // const { edName, edDescription } = ctx.request.body;
-          // const {edId} = +(ctx.params.id);
-          // console.log(edId);
-          // const editedIndex = tickets.findIndex((item) => {
-          //   console.log(item.id);
-          //   item.id === edId;
-          // });
+      //     const {edid} = ctx.request.query;
+      //     const updateIdx = tickets.findIndex(ticket => ticket.id === edid);
+      //     console.log(edid, updateIdx);
+      // const {updateData} = ctx.request.body;
+      // const tick = {
+      //   ...tickets[updateIdx],
+      //   ...updateData
+      // }
+      // tickets.splice(updateIdx, 1);
+      // tickets.splice(updateIdx, 0, tick);
+      // ctx.response.body = tickets;
+      // return;
+          const { edName, edDescription } = ctx.request.body;
+          const {edId} = ctx.request.query;
+          console.log(edId);
+          const editedIndex = tickets.findIndex((item) => {
+            console.log(item.id);
+            item.id === edId;
+          });
           
-          // console.log(editedIndex);
-          // tickets[editedIndex].name = edName;
-          // tickets[editedIndex].description = edDescription;
-          // ctx.response.body = true;
+          console.log(editedIndex);
+          tickets[editedIndex].name = edName;
+          tickets[editedIndex].description = edDescription;
+          ctx.response.body = true;
         return;
           default:
           ctx.response.status = 404;
