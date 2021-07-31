@@ -78,8 +78,9 @@ app.use(async (ctx, next) => {
     ctx.response.set({
       'Access-Control-Allow-Origin': '*',
       });
-      let { method } = ctx.request.query;
-      method ? method : method = ctx.request.body.method;
+      const { method,id } = ctx.request.query;
+      const { name, description } = ctx.request.body;
+      // method ? method : method = ctx.request.body.method;
       switch (method) {
         case 'allTickets':
           ctx.response.body = tickets.map((item) => {
@@ -93,7 +94,7 @@ app.use(async (ctx, next) => {
           return;
         // TODO: обработка остальных методов
         case 'ticketById':
-          const { id } = ctx.request.query;
+          // const { id } = ctx.request.query;
           if (id) {
             const ticket = tickets.find((item) => item.id === id);
             if (ticket) {
@@ -104,40 +105,37 @@ app.use(async (ctx, next) => {
           }
           return;
         case 'createTicket':
-          const { name, description } = ctx.request.body;
+          //const { name, description } = ctx.request.body;
           const newId = uuid.v4();
           const created = new Date();
           tickets.push(new Tickets(newId, name, description, false, created));
           ctx.response.body = tickets;
         return;
         case 'removeById':
-          const { delId } = ctx.request.query;
-          const index = tickets.findIndex((item) => item.id === delId);
+          // const { delId } = ctx.request.query;
+          const index = tickets.findIndex((item) => item.id === id);
           tickets.splice(index, 1);
           ctx.response.body = true;
           return;
         case 'editTicket':
-          if (ctx.request.query.id) {
-            const { edName, edDescription } = ctx.request.body;
-            const edId = Number(ctx.request.query.id);
-            console.log(edId);
-            for (const item of tickets) {
-              if (edId === item.id) {
-                item.name = edName;
-                item.description = edDescription;
-              }
-            }
+          // if (ctx.request.query.id) {
+          //   const { edName, edDescription } = ctx.request.body;
+          //   const edId = Number(ctx.request.query.id);
+          //   console.log(edId);
+          //   for (const item of tickets) {
+          //     if (edId === item.id) {
+          //       item.name = edName;
+          //       item.description = edDescription;
+          //     }
+          //   }
+          // }
+          if (id) {
+            const index = tickets.findIndex((item) => item.id === id);
+            tickets[index].name = name;
+            tickets[index].description = description;
+
           }
-          // console.log(ctx.request.query.id);
-          // console.log(tickets);
-          // const editedIndex = tickets.find((item) => {
-          //   item.id === ctx.request.query.id;
-          // });
-          
-          // console.log(editedIndex);
-          // editedIndex.name = edName;
-          // editedIndex.description = edDescription;
-          ctx.response.body = tickets;
+          ctx.response.body = true;
         return;
           default:
           ctx.response.status = 404;
